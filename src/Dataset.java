@@ -2,18 +2,19 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 public class Dataset{
-    
-	ArrayList<Game> data;
-	String sortedByAttribute;
+
+	private ArrayList<Game> data;
+	private String sortedByAttribute;
 	
-	Dataset(ArrayList<Game> data) this.data = data;
+	Dataset(ArrayList<Game> data){
+		this.data = data;
+	}
 	    
 	public static int getGamesByPrice(int price){
-	    
-	    
+
 	}
-	
-	
-	
-	
+
+	public ArrayList<Game> getData() {
+		return data;
+	}
 }
