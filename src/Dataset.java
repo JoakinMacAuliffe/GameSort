@@ -3,20 +3,22 @@ import java.util.*;
 public class Dataset{
 
 	private ArrayList<Game> data;
-	private String sortedByAttribute;
+	private String sortedByAttribute = "price";
 	
 	Dataset(ArrayList<Game> data) {
 		this.data = data;
 	}
 	    
 	public ArrayList<Game> getGamesByPrice(int price){
-	    
-	    ArrayList<Game> lista = new ArrayList<>();
-	    
-	    if (sortedByAttribute == "price") {
-			binarySearch()
-	    }
-
+	    ArrayList<Game> dataSortedByPrice = new ArrayList<>();
+	    if (sortedByAttribute.equals("price") || sortedByAttribute.equals("Price")) {
+			while(binarySearchByPrice(data, price) != null) {
+				dataSortedByPrice.add(binarySearchByPrice(data, price));
+			}
+			return dataSortedByPrice;
+	    } else {
+			return null;
+		}
 	}
 
 	public Game binarySearchByPrice(ArrayList<Game> array, int price) {
