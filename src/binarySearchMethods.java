@@ -11,7 +11,7 @@ public class binarySearchMethods {
                 return mid;
             } else if(arrayList.get(mid).getPrice() > price) {
                 right = mid - 1;
-            } else {
+            } else if(arrayList.get(mid).getPrice() < price) {
                 left = mid + 1;
             }
         }
