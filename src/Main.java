@@ -14,7 +14,7 @@ public class Main {
         ArrayList<Game> gamesSorted = dataset.getGamesByPrice(123);
 
         for(int i = 0; i < gamesSorted.size(); i++) {
-            System.out.println(gamesSorted.get(i));
+            System.out.println(gamesSorted.get(i).getName());
         }
     }
 }
