@@ -13,17 +13,19 @@ public class Dataset{
 	    ArrayList<Game> dataSortedByPrice = new ArrayList<>();
 	    if(sortedByAttribute.equalsIgnoreCase("price")) { // El atributo equivale a price ignorando mayúsculas
 			int index = binarySearchByPrice(data, price); // El índice se posiciona sobre el primer juego que coincida con el precio
-			if(index == -1) return null; // No existe ningún juego con ese precio
+			if(index == -1) return dataSortedByPrice; // No existe ningún juego con ese precio, retorna lista vacía
 
-			int left = index + 1;
+			dataSortedByPrice.add(data.get(index));
+
+			int left = index - 1;
 			while(left >= 0 && data.get(left).getPrice() == price) {
-				dataSortedByPrice.add(data.get(index));
+				dataSortedByPrice.add(data.get(left));
 				left--;
 			}
 
-			int right = index - 1;
+			int right = index + 1;
 			while(right < data.size() && data.get(right).getPrice() == price) {
-				dataSortedByPrice.add(data.get(index));
+				dataSortedByPrice.add(data.get(right));
 				right++;
 			}
 
