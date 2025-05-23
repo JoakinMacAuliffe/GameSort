@@ -5,8 +5,7 @@ public class Main {
 
         ArrayList<Game> data = new ArrayList<>();
 
-
-        data.add(new Game("geometry dasgfhs", "gay", 123, 100));
+        data.add(new Game("geometry dasgfhs", "test", 123, 100));
         data.add(new Game("asdlfsa", "hola", 10, 40));
         data.add(new Game("hola", "cat1", 123, 40));
         data.add(new Game("test", "cat2", 20, 12));
@@ -19,4 +18,5 @@ public class Main {
             System.out.println(gamesSorted.get(i).getName());
         }
     }
+
 }
