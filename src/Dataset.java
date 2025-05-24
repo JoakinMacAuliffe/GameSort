@@ -3,7 +3,7 @@ import java.util.*;
 public class Dataset{
 
 	private ArrayList<Game> data;
-	private String sortedByAttribute = "price";
+	private String sortedByAttribute = "";
 
 	searchAndSortMethods searchAndSortMethods = new searchAndSortMethods();
 
@@ -82,9 +82,9 @@ public class Dataset{
 		switch(algorithm.toLowerCase()) { // el string algorithm se convierte a minúsculas de tal manera de que no afecten las mayúsculas en el switch
 			case "bubblesort":
 				if(sortedByAttribute.equalsIgnoreCase("category")) {
-
+					searchAndSortMethods.bubbleSortByCategory(data);
 				} else if(sortedByAttribute.equalsIgnoreCase("quality")) {
-
+					searchAndSortMethods.bubbleSortByQuality(data);
 				} else { // En cualquier otro caso, ordenar por atributo price
 					searchAndSortMethods.bubbleSortByPrice(data);
 				}
@@ -128,11 +128,26 @@ public class Dataset{
 			default:
 				// Collections.sort();
 				if(sortedByAttribute.equalsIgnoreCase("category")) {
-
+					Collections.sort(data, new Comparator<Game>() {
+						@Override
+						public int compare(Game game1, Game game2) {
+							return game1.getCategory().compareTo(game2.getCategory());
+						}
+					});
 				} else if(sortedByAttribute.equalsIgnoreCase("quality")) {
-
+					Collections.sort(data, new Comparator<Game>() {
+						@Override
+						public int compare(Game game1, Game game2) {
+							return Integer.compare(game1.getQuality(), game2.getQuality());
+						}
+					});
 				} else { // En cualquier otro caso, ordenar por atributo price
-
+					Collections.sort(data, new Comparator<Game>() {
+						@Override
+						public int compare(Game game1, Game game2) {
+							return Integer.compare(game1.getPrice(), game2.getPrice());
+						}
+					});
 				}
 
 		}

@@ -47,4 +47,31 @@ public class searchAndSortMethods {
         }
     }
 
+    public void bubbleSortByQuality(ArrayList<Game> arrayList) {
+        int n = arrayList.size();
+        for(int i = 0; i < n - 1; i++) {
+            for(int j = 0; j < n - 1 - i; j++) {
+                if(arrayList.get(j).getQuality() > arrayList.get(j + 1).getQuality()) {
+                    Game temp = arrayList.get(j);
+                    arrayList.set(j, arrayList.get(j + 1));
+                    arrayList.set(j + 1, temp);
+                }
+            }
+        }
+    }
+
+    public void bubbleSortByCategory(ArrayList<Game> arrayList) {
+        int n = arrayList.size();
+        for(int i = 0; i < n - 1; i++) {
+            for(int j = 0; j < n - 1 - i; j++) {
+                if(arrayList.get(j).getCategory().compareTo(arrayList.get(j + 1).getCategory()) > 0) {
+                    // Nota: compareTo compara los valores unicode de los strings, por eso el > 0
+                    Game temp = arrayList.get(j);
+                    arrayList.set(j, arrayList.get(j + 1));
+                    arrayList.set(j + 1, temp);
+                }
+            }
+        }
+    }
+
 }
