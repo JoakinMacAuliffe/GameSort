@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class binarySearchMethods {
+public class searchAndSortMethods {
 
     public int binarySearchByPrice(ArrayList<Game> arrayList, int price) {
         int left = 0;
@@ -32,6 +32,19 @@ public class binarySearchMethods {
             }
         }
         return -1;
+    }
+
+    public void bubbleSortByPrice(ArrayList<Game> arrayList) {
+        int n = arrayList.size();
+        for(int i = 0; i < n - 1; i++) {
+            for(int j = 0; j < n - 1 - i; j++) {
+                if(arrayList.get(j).getPrice() > arrayList.get(j + 1).getPrice()) {
+                    Game temp = arrayList.get(j);
+                    arrayList.set(j, arrayList.get(j + 1));
+                    arrayList.set(j + 1, temp);
+                }
+            }
+        }
     }
 
 }
