@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class binarySearchMethods {
 
     public int binarySearchByPrice(ArrayList<Game> arrayList, int price) {
+
         int left = 0;
         int right = arrayList.size() - 1;
         while(left <= right) {

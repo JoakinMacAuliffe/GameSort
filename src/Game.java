@@ -6,6 +6,7 @@ public class Game {
     private int quality = 0;
 
     Game(String name, String category, int price, int quality) {
+
         this.name = name;
         this.category = category;
 
