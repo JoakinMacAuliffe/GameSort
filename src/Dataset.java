@@ -17,7 +17,7 @@ public class Dataset{
 
 		if(sortedByAttribute.equalsIgnoreCase("price")) { // El atributo equivale a price ignorando mayúsculas
 
-			int index = searchAndSortMethods.binarySearch(data, "price", 0, price, "null"); // El índice se posiciona sobre el primer juego que coincida con el precio
+			int index = searchAndSortMethods.binarySearch(data, "price", 0, price, null, 0); // El índice se posiciona sobre el primer juego que coincida con el precio
 			if(index == -1) return dataSortedByPrice; // No existe ningún juego con ese precio, retorna lista vacía
 
 			dataSortedByPrice.add(data.get(index));
@@ -49,7 +49,7 @@ public class Dataset{
 		ArrayList<Game> dataSortedByPriceRange = new ArrayList<>();
 		if(sortedByAttribute.equalsIgnoreCase("price")) {
 
-			int index = searchAndSortMethods.binarySearch(data, "pricebyrange", lowerPrice, higherPrice, "null");
+			int index = searchAndSortMethods.binarySearch(data, "pricebyrange", lowerPrice, higherPrice, null, 0);
 			if(index == -1) return dataSortedByPriceRange;
 
 			dataSortedByPriceRange.add(data.get(index));
@@ -87,36 +87,30 @@ public class Dataset{
 
 		if(sortedByAttribute.equalsIgnoreCase("category")) {
 
-			int index = searchAndSortMethods.binarySearch(data, "category",0, 0, category);
-
+			int index = searchAndSortMethods.binarySearch(data, "category",0, 0, category, 0);
 			if(index == -1) return dataSortedByCategory;
-
 			dataSortedByCategory.add(data.get(index));
 
 			int left = index - 1;
-
 			while(left >= 0 && data.get(left).getCategory().compareTo(category) == 0) {
-
 				dataSortedByCategory.add(data.get(left));
 				left--;
 			}
 
 			int right = index + 1;
-
 			while(right < data.size() && data.get(right).getCategory().compareTo(category) == 0) {
-
 				dataSortedByCategory.add(data.get(right));
 				right++;
 			}
-		}
-		else {
+
+			return dataSortedByCategory;
+
+		} else {
 
 			for(int i = 0; i < data.size(); i++) {
-
 				if(data.get(i).getCategory().compareTo(category) == 0) dataSortedByCategory.add(data.get(i));
 			}
 		}
-
 		return dataSortedByCategory;
 	}
 
@@ -125,7 +119,7 @@ public class Dataset{
 
 		if(sortedByAttribute.equalsIgnoreCase("quality")){
 
-			int index = searchAndSortMethods.binarySearchByQuality(data, quality);
+			int index = searchAndSortMethods.binarySearch(data, "quality", 0, 0, null, quality);
 			if(index == -1) return dataSortedByQuality;
 
 			dataSortedByQuality.add(data.get(index));
@@ -133,7 +127,6 @@ public class Dataset{
 			int left = index -1;
 
 			while(left >=0 && data.get(left).getQuality() == quality){
-
 				dataSortedByQuality.add(data.get(left));
 				left--;
 			}
@@ -149,9 +142,7 @@ public class Dataset{
 		} else {
 
 			for(int i = 0; i < data.size(); i++){
-
 				if(data.get(i).getQuality() == quality){
-
 					dataSortedByQuality.add(data.get(i));
 				}
 			}
@@ -161,30 +152,15 @@ public class Dataset{
 	}
 
 	public void sortByAlgorithm(String algorithm, String attribute) {
-
-		this.sortedByAttribute = attribute.toLowerCase();
-
+		this.sortedByAttribute = attribute.toLowerCase(); // Cambiar atributo sortedByAtributte al atributo ingresado a la función, de tal manera de que contenga el atributo correcto
 		switch(algorithm.toLowerCase()) { // el string algorithm se convierte a minúsculas de tal manera de que no afecten las mayúsculas en el switch
 
 			case "bubblesort": searchAndSortMethods.bubbleSort(data, attribute); break;
 
 			case "insertionsort": searchAndSortMethods.insertionSort(data, attribute); break;
 
-			case "selectionsort":
+			case "selectionsort": searchAndSortMethods.selectionSort(data, attribute); break;
 
-				if(attribute.equalsIgnoreCase("category")) {
-
-					this.sortedByAttribute = "category";
-				}
-				else if(attribute.equalsIgnoreCase("quality")) {
-
-					this.sortedByAttribute = "quality";
-				}
-				else { // En cualquier otro caso, ordenar por atributo price
-
-					this.sortedByAttribute = "price";
-				}
-				break;
 			case "mergesort":
 
 				if(attribute.equalsIgnoreCase("category")) {
