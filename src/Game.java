@@ -2,8 +2,8 @@ public class Game {
 
     private String name;
     private String category;
-    private int price = 0;
-    private int quality = 0;
+    private int price;
+    private int quality;
 
     Game(String name, String category, int price, int quality) {
 

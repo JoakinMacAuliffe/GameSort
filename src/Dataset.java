@@ -78,51 +78,112 @@ public class Dataset{
 		}
 	}
 
+	public ArrayList<Game> getGamesByCategory(String category){
+
+		ArrayList<Game> dataSortedByCategory = new ArrayList<>();
+
+		if(sortedByAttribute.equalsIgnoreCase("category")) {
+
+			int index = searchAndSortMethods.binarySearchByCategory(data, category);
+
+			if(index == -1) return dataSortedByCategory;
+
+			dataSortedByCategory.add(data.get(index));
+
+			int left = index - 1;
+
+			while(left >= 0 && data.get(left).getCategory() == category) {
+
+				dataSortedByCategory.add(data.get(left));
+				left--;
+			}
+
+			int right = index + 1;
+
+			while(right < data.size() && data.get(right).getCategory() == category) {
+
+				dataSortedByCategory.add(data.get(right));
+				right++;
+			}
+		}
+		else {
+
+			for(int i = 0; i < data.size(); i++) {
+
+				if(data.get(i).getCategory() == category) dataSortedByCategory.add(data.get(i));
+			}
+		}
+
+		return dataSortedByCategory;
+	}
+
 	public void sortByAlgorithm(String algorithm, String attribute) {
+
+		this.sortedByAttribute = attribute.toLowerCase();
+
 		switch(algorithm.toLowerCase()) { // el string algorithm se convierte a minúsculas de tal manera de que no afecten las mayúsculas en el switch
 			case "bubblesort":
-				if(sortedByAttribute.equalsIgnoreCase("category")) {
+				if(attribute.equalsIgnoreCase("category")) {
+
 					searchAndSortMethods.bubbleSortByCategory(data);
-				} else if(sortedByAttribute.equalsIgnoreCase("quality")) {
+				}
+				else if(attribute.equalsIgnoreCase("quality")) {
+
 					searchAndSortMethods.bubbleSortByQuality(data);
-				} else { // En cualquier otro caso, ordenar por atributo price
+				}
+				else {
+
 					searchAndSortMethods.bubbleSortByPrice(data);
 				}
 				break;
-			case "insertionsort":
-				if(sortedByAttribute.equalsIgnoreCase("category")) {
 
-				} else if(sortedByAttribute.equalsIgnoreCase("quality")) {
+				case "insertionsort":
 
-				} else { // En cualquier otro caso, ordenar por atributo price
+				searchAndSortMethods.insertionSort(data, attribute);
 
+				case "selectionsort":
+
+				if(attribute.equalsIgnoreCase("category")) {
+
+					this.sortedByAttribute = "category";
 				}
-				break;
-			case "selectionsort":
-				if(sortedByAttribute.equalsIgnoreCase("category")) {
+				else if(attribute.equalsIgnoreCase("quality")) {
 
-				} else if(sortedByAttribute.equalsIgnoreCase("quality")) {
+					this.sortedByAttribute = "quality";
+				}
+				else { // En cualquier otro caso, ordenar por atributo price
 
-				} else { // En cualquier otro caso, ordenar por atributo price
-
+					this.sortedByAttribute = "price";
 				}
 				break;
 			case "mergesort":
-				if(sortedByAttribute.equalsIgnoreCase("category")) {
 
-				} else if(sortedByAttribute.equalsIgnoreCase("quality")) {
+				if(attribute.equalsIgnoreCase("category")) {
 
-				} else { // En cualquier otro caso, ordenar por atributo price
+					this.sortedByAttribute = "category";
+				}
+				else if(attribute.equalsIgnoreCase("quality")) {
 
+					this.sortedByAttribute = "quality";
+				}
+				else { // En cualquier otro caso, ordenar por atributo price
+
+					this.sortedByAttribute = "price";
 				}
 				break;
 			case "quicksort":
-				if(sortedByAttribute.equalsIgnoreCase("category")) {
 
-				} else if(sortedByAttribute.equalsIgnoreCase("quality")) {
+				if(attribute.equalsIgnoreCase("category")) {
 
-				} else { // En cualquier otro caso, ordenar por atributo price
+					this.sortedByAttribute = "category";
+				}
+				else if(attribute.equalsIgnoreCase("quality")) {
 
+					this.sortedByAttribute = "quality";
+				}
+				else { // En cualquier otro caso, ordenar por atributo price
+
+					this.sortedByAttribute = "price";
 				}
 				break;
 			default:

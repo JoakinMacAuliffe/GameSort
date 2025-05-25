@@ -19,6 +19,7 @@ public class searchAndSortMethods {
     }
 
     public int binarySearchByPriceRange(ArrayList<Game> arrayList, int lowerPrice, int higherPrice) {
+
         int left = 0;
         int right = arrayList.size() - 1;
         while(left <= right) {
@@ -31,6 +32,25 @@ public class searchAndSortMethods {
                 left = mid + 1;
             }
         }
+        return -1;
+    }
+
+   public int binarySearchByCategory(ArrayList<Game> arrayList, String category) {
+
+        int left = 0;
+        int right = arrayList.size() - 1;
+
+        while(left <= right) {
+
+            int mid = (left + right) / 2;
+
+            if(arrayList.get(mid).getCategory() == category) return mid;
+
+            else if(arrayList.get(mid).getCategory().compareTo(category) < 0) right = mid - 1;
+
+            else left = mid + 1;
+        }
+
         return -1;
     }
 
@@ -73,5 +93,65 @@ public class searchAndSortMethods {
             }
         }
     }
+
+    public void insertionSort(ArrayList<Game> arrayList, String attribute){
+
+        switch(attribute){
+
+            case "price":
+
+                for(int i=1; i<arrayList.size(); i++){
+
+                    int value = arrayList.get(i).getPrice();
+                    int aux = i - 1;
+
+                    while(aux >= 0 && arrayList.get(aux).getPrice() > value){
+
+                        arrayList.set(aux+1, arrayList.get(aux));
+                        aux--;
+                    }
+
+                    arrayList.set(aux+1, arrayList.get(i));
+                }
+                break;
+
+            case "quality":
+
+                for(int i=1; i<arrayList.size(); i++){
+
+                    int value = arrayList.get(i).getQuality();
+                    int aux = i - 1;
+
+                    while(aux >= 0 && arrayList.get(aux).getQuality() > value){
+
+                        arrayList.set(aux+1, arrayList.get(aux));
+                        aux--;
+                    }
+
+                    arrayList.set(aux+1, arrayList.get(i));
+                }
+                break;
+
+            case "category":
+
+                for(int i=1; i<arrayList.size(); i++){
+
+                    String value = arrayList.get(i).getCategory();
+                    int aux = i - 1;
+
+                    while(aux >= 0 && arrayList.get(aux).getCategory().compareTo(value) > 0){
+
+                        arrayList.set(aux+1, arrayList.get(aux));
+                        aux--;
+                    }
+
+                    arrayList.set(aux+1, arrayList.get(i));
+                }
+                break;
+
+            default: return;
+        }
+    }
+
 
 }

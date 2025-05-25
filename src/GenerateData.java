@@ -3,8 +3,9 @@ import java.util.Random;
 
 public class GenerateData {
 
-    private String[] words = {"Dragon", "Empire", "Quest", "Galaxy", "Legends", "Warrior"};
-    private String[] categories = {"Accion", "Aventura", "Estrategia", "RPG", "Deportes", "Simulacion"};
+    private String[] words = {"Dragon", "Empire", "Quest", "Galaxy","Fant", "Legends", "Warrior",
+    "Pergio","Tourbes", "Do", "While", "Ohliver", "Sinto", "Super", "Ovalous"};
+    private String[] categories = {"Accion", "Aventura", "Estrategia", "RPG", "Deportes", "Simulacion", ""};
     private Random random = new Random();
 
     public ArrayList<Game> generateData(int n) {
