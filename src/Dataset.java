@@ -120,6 +120,46 @@ public class Dataset{
 		return dataSortedByCategory;
 	}
 
+	public ArrayList<Game> getGamesByQuality (int quality){
+		ArrayList<Game> dataSortedByQuality = new ArrayList<>();
+
+		if(sortedByAttribute.equalsIgnoreCase("quality")){
+
+			int index = searchAndSortMethods.binarySearchByQuality(data, quality);
+			if(index == -1) return dataSortedByQuality;
+
+			dataSortedByQuality.add(data.get(index));
+
+			int left = index -1;
+
+			while(left >=0 && data.get(left).getQuality() == quality){
+
+				dataSortedByQuality.add(data.get(left));
+				left--;
+			}
+
+			int right = index + 1;
+			while(right < data.size() && data.get(right).getQuality() == quality) {
+				dataSortedByQuality.add(data.get(right));
+				right++;
+			}
+
+			return dataSortedByQuality;
+
+		} else {
+
+			for(int i = 0; i < data.size(); i++){
+
+				if(data.get(i).getQuality() == quality){
+
+					dataSortedByQuality.add(data.get(i));
+				}
+			}
+			return dataSortedByQuality;
+		}
+
+	}
+
 	public void sortByAlgorithm(String algorithm, String attribute) {
 
 		this.sortedByAttribute = attribute.toLowerCase();
