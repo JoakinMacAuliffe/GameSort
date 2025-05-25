@@ -102,45 +102,32 @@ public class searchAndSortMethods {
         }
     }
 
-    public void insertionSort(ArrayList<Game> arrayList, String attribute){
-        switch(attribute.toLowerCase()){
-
-            case "quality":
-                for(int i = 1; i < arrayList.size(); i++){
-                    int value = arrayList.get(i).getQuality();
-                    int aux = i - 1;
-                    while(aux >= 0 && arrayList.get(aux).getQuality() > value){
-                        arrayList.set(aux + 1, arrayList.get(aux));
-                        aux--;
+    public void insertionSort(ArrayList<Game> arrayList, String attribute) {
+        for (int i = 1; i < arrayList.size(); i++) {
+            Game key = arrayList.get(i);
+            int j = i - 1;
+            switch (attribute.toLowerCase()) {
+                case "quality":
+                    while (j >= 0 && arrayList.get(j).getQuality() > key.getQuality()) {
+                        arrayList.set(j + 1, arrayList.get(j));
+                        j--;
                     }
-                    arrayList.set(aux + 1, arrayList.get(i));
-                }
-                break;
-
-            case "category":
-                for(int i = 1; i < arrayList.size(); i++){
-                    String value = arrayList.get(i).getCategory();
-                    int aux = i - 1;
-                    while(aux >= 0 && arrayList.get(aux).getCategory().compareTo(value) > 0){
-                        arrayList.set(aux + 1, arrayList.get(aux));
-                        aux--;
+                    break;
+                case "category":
+                    while (j >= 0 && arrayList.get(j).getCategory().compareTo(key.getCategory()) > 0) {
+                        arrayList.set(j + 1, arrayList.get(j));
+                        j--;
                     }
-                    arrayList.set(aux + 1, arrayList.get(i));
-                }
-                break;
-
-            case "price":
-            default:
-                for(int i = 1; i < arrayList.size(); i++){
-                    int value = arrayList.get(i).getPrice();
-                    int aux = i - 1;
-                    while(aux >= 0 && arrayList.get(aux).getPrice() > value){
-                        arrayList.set(aux+1, arrayList.get(aux));
-                        aux--;
+                    break;
+                case "price":
+                default:
+                    while (j >= 0 && arrayList.get(j).getPrice() > key.getPrice()) {
+                        arrayList.set(j + 1, arrayList.get(j));
+                        j--;
                     }
-                    arrayList.set(aux + 1, arrayList.get(i));
-                }
-                break;
+                    break;
+            }
+            arrayList.set(j + 1, key);
         }
     }
 

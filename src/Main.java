@@ -10,16 +10,16 @@ public class Main {
 
         ArrayList<Game> data = dataset.getData();
 
-        dataset.sortByAlgorithm("asdfa", "quality");
+        dataset.sortByAlgorithm("insertionsort", "price");
 
         for(int i = 0; i < data.size(); i++) {
-            System.out.println(data.get(i).getQuality());
+            System.out.println(i+": " + "$" + data.get(i).getPrice() + ", " + data.get(i).getCategory() + ", " + data.get(i).getQuality());
         }
 
-        ArrayList<Game> data2 = dataset.getGamesByPrice(10000);
+        ArrayList<Game> data2 = dataset.getGamesByQuality(30);
 
 //        for(int i = 0; i < data2.size(); i++) {
-//            System.out.println(data2.get(i).getPrice());
+//            System.out.println(data2.get(i).getQuality());
 //        }
 
     }
