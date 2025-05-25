@@ -37,60 +37,83 @@ public class searchAndSortMethods {
 
    public int binarySearchByCategory(ArrayList<Game> arrayList, String category) {
 
-        int left = 0;
-        int right = arrayList.size() - 1;
+       int left = 0;
+       int right = arrayList.size() - 1;
 
-        while(left <= right) {
+       while (left <= right) {
 
-            int mid = (left + right) / 2;
+           int mid = (left + right) / 2;
 
-            if(arrayList.get(mid).getCategory() == category) return mid;
+           if (arrayList.get(mid).getCategory() == category) return mid;
 
-            else if(arrayList.get(mid).getCategory().compareTo(category) < 0) right = mid - 1;
+           else if (arrayList.get(mid).getCategory().compareTo(category) < 0) right = mid - 1;
 
-            else left = mid + 1;
-        }
+           else left = mid + 1;
+       }
 
-        return -1;
-    }
+       return -1;
+   }
 
-    public void bubbleSortByPrice(ArrayList<Game> arrayList) {
-        int n = arrayList.size();
-        for(int i = 0; i < n - 1; i++) {
-            for(int j = 0; j < n - 1 - i; j++) {
-                if(arrayList.get(j).getPrice() > arrayList.get(j + 1).getPrice()) {
-                    Game temp = arrayList.get(j);
-                    arrayList.set(j, arrayList.get(j + 1));
-                    arrayList.set(j + 1, temp);
+    public void bubbleSort(ArrayList<Game> arrayList, String attribute){
+
+        switch(attribute){
+
+            case "price":
+
+                int n = arrayList.size();
+
+                for(int i = 0; i < n - 1; i++) {
+
+                    for(int j = 0; j < n - 1 - i; j++) {
+
+                        if(arrayList.get(j).getPrice() > arrayList.get(j + 1).getPrice()) {
+
+                            Game temp = arrayList.get(j);
+                            arrayList.set(j, arrayList.get(j + 1));
+                            arrayList.set(j + 1, temp);
+                        }
+                    }
                 }
-            }
-        }
-    }
+                break;
 
-    public void bubbleSortByQuality(ArrayList<Game> arrayList) {
-        int n = arrayList.size();
-        for(int i = 0; i < n - 1; i++) {
-            for(int j = 0; j < n - 1 - i; j++) {
-                if(arrayList.get(j).getQuality() > arrayList.get(j + 1).getQuality()) {
-                    Game temp = arrayList.get(j);
-                    arrayList.set(j, arrayList.get(j + 1));
-                    arrayList.set(j + 1, temp);
-                }
-            }
-        }
-    }
+            case "quality":
 
-    public void bubbleSortByCategory(ArrayList<Game> arrayList) {
-        int n = arrayList.size();
-        for(int i = 0; i < n - 1; i++) {
-            for(int j = 0; j < n - 1 - i; j++) {
-                if(arrayList.get(j).getCategory().compareTo(arrayList.get(j + 1).getCategory()) > 0) {
-                    // Nota: compareTo compara los valores unicode de los strings, por eso el > 0
-                    Game temp = arrayList.get(j);
-                    arrayList.set(j, arrayList.get(j + 1));
-                    arrayList.set(j + 1, temp);
+                int n = arrayList.size();
+
+                for(int i = 0; i < n - 1; i++) {
+
+                    for(int j = 0; j < n - 1 - i; j++) {
+
+                        if(arrayList.get(j).getQuality() > arrayList.get(j + 1).getQuality()) {
+
+                            Game temp = arrayList.get(j);
+                            arrayList.set(j, arrayList.get(j + 1));
+                            arrayList.set(j + 1, temp);
+                        }
+                    }
                 }
-            }
+                break;
+
+            case "category":
+
+                int n = arrayList.size();
+
+                for(int i = 0; i < n - 1; i++) {
+
+                    for(int j = 0; j < n - 1 - i; j++) {
+
+                        if(arrayList.get(j).getCategory().compareTo(arrayList.get(j + 1).getCategory()) > 0) {
+
+                            // Nota: compareTo compara los valores unicode de los strings, por eso el > 0
+                            Game temp = arrayList.get(j);
+                            arrayList.set(j, arrayList.get(j + 1));
+                            arrayList.set(j + 1, temp);
+                        }
+                    }
+                }
+                break;
+
+            default: return;
         }
     }
 
@@ -152,6 +175,4 @@ public class searchAndSortMethods {
             default: return;
         }
     }
-
-
 }

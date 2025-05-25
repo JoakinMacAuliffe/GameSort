@@ -122,26 +122,12 @@ public class Dataset{
 		this.sortedByAttribute = attribute.toLowerCase();
 
 		switch(algorithm.toLowerCase()) { // el string algorithm se convierte a minúsculas de tal manera de que no afecten las mayúsculas en el switch
-			case "bubblesort":
-				if(attribute.equalsIgnoreCase("category")) {
 
-					searchAndSortMethods.bubbleSortByCategory(data);
-				}
-				else if(attribute.equalsIgnoreCase("quality")) {
+			case "bubblesort": searchAndSortMethods.bubbleSort(data, attribute); break;
 
-					searchAndSortMethods.bubbleSortByQuality(data);
-				}
-				else {
+			case "insertionsort": searchAndSortMethods.insertionSort(data, attribute); break;
 
-					searchAndSortMethods.bubbleSortByPrice(data);
-				}
-				break;
-
-				case "insertionsort":
-
-				searchAndSortMethods.insertionSort(data, attribute);
-
-				case "selectionsort":
+			case "selectionsort":
 
 				if(attribute.equalsIgnoreCase("category")) {
 
