@@ -61,18 +61,6 @@ public class searchAndSortMethods {
         int n = arrayList.size();
         switch(attribute.toLowerCase()){
 
-            case "price":
-                for(int i = 0; i < n - 1; i++) {
-                    for(int j = 0; j < n - 1 - i; j++) {
-                        if(arrayList.get(j).getPrice() > arrayList.get(j + 1).getPrice()) {
-                            Game temp = arrayList.get(j);
-                            arrayList.set(j, arrayList.get(j + 1));
-                            arrayList.set(j + 1, temp);
-                        }
-                    }
-                }
-                break;
-
             case "quality":
                 for(int i = 0; i < n - 1; i++) {
                     for(int j = 0; j < n - 1 - i; j++) {
@@ -98,24 +86,24 @@ public class searchAndSortMethods {
                 }
                 break;
 
-            default: return;
+            case "price":
+            default:
+                for(int i = 0; i < n - 1; i++) {
+                    for(int j = 0; j < n - 1 - i; j++) {
+                        if(arrayList.get(j).getPrice() > arrayList.get(j + 1).getPrice()) {
+                            Game temp = arrayList.get(j);
+                            arrayList.set(j, arrayList.get(j + 1));
+                            arrayList.set(j + 1, temp);
+                        }
+                    }
+                }
+                break;
+
         }
     }
 
     public void insertionSort(ArrayList<Game> arrayList, String attribute){
         switch(attribute.toLowerCase()){
-
-            case "price":
-                for(int i = 1; i < arrayList.size(); i++){
-                    int value = arrayList.get(i).getPrice();
-                    int aux = i - 1;
-                    while(aux >= 0 && arrayList.get(aux).getPrice() > value){
-                        arrayList.set(aux+1, arrayList.get(aux));
-                        aux--;
-                    }
-                    arrayList.set(aux + 1, arrayList.get(i));
-                }
-                break;
 
             case "quality":
                 for(int i = 1; i < arrayList.size(); i++){
@@ -141,27 +129,24 @@ public class searchAndSortMethods {
                 }
                 break;
 
-            default: return;
+            case "price":
+            default:
+                for(int i = 1; i < arrayList.size(); i++){
+                    int value = arrayList.get(i).getPrice();
+                    int aux = i - 1;
+                    while(aux >= 0 && arrayList.get(aux).getPrice() > value){
+                        arrayList.set(aux+1, arrayList.get(aux));
+                        aux--;
+                    }
+                    arrayList.set(aux + 1, arrayList.get(i));
+                }
+                break;
         }
     }
 
     public void selectionSort(ArrayList<Game> arrayList, String attribute) {
         int n = arrayList.size();
         switch(attribute.toLowerCase()) {
-
-            case "price":
-                for(int i = 0; i < n - 1; i++) {
-                    int minimumIndex = i;
-                    for(int j = i + 1; j < n; j++) {
-                        if(arrayList.get(j).getPrice() < arrayList.get(minimumIndex).getPrice()) {
-                            minimumIndex = j;
-                        }
-                    }
-                    Game temp = arrayList.get(minimumIndex);
-                    arrayList.set(minimumIndex, arrayList.get(i));
-                    arrayList.set(i, temp);
-                }
-                break;
 
             case "quality":
                 for(int i = 0; i < n - 1; i++) {
@@ -171,7 +156,6 @@ public class searchAndSortMethods {
                             minimumIndex = j;
                         }
                     }
-
                     Game temp = arrayList.get(minimumIndex);
                     arrayList.set(minimumIndex, arrayList.get(i));
                     arrayList.set(i, temp);
@@ -190,6 +174,23 @@ public class searchAndSortMethods {
                     arrayList.set(minimumIndex, arrayList.get(i));
                     arrayList.set(i, temp);
                 }
+                break;
+
+            case "price":
+            default:
+                for(int i = 0; i < n - 1; i++) {
+                    int minimumIndex = i;
+                    for(int j = i + 1; j < n; j++) {
+                        if(arrayList.get(j).getPrice() < arrayList.get(minimumIndex).getPrice()) {
+                            minimumIndex = j;
+                        }
+                    }
+                    Game temp = arrayList.get(minimumIndex);
+                    arrayList.set(minimumIndex, arrayList.get(i));
+                    arrayList.set(i, temp);
+                }
+                break;
+
         }
     }
 
@@ -208,14 +209,15 @@ public class searchAndSortMethods {
         while(i < left.size() && j < right.size()) {
             boolean takeLeft = false;
             switch (attribute.toLowerCase()) {
-                case "price":
-                    takeLeft = left.get(i).getPrice() <= right.get(j).getPrice();
-                    break;
                 case "quality":
                     takeLeft = left.get(i).getQuality() <= right.get(j).getQuality();
                     break;
                 case "category":
                     takeLeft = left.get(i).getCategory().compareTo(right.get(j).getCategory()) <= 0;
+                    break;
+                case "price":
+                default:
+                    takeLeft = left.get(i).getPrice() <= right.get(j).getPrice();
                     break;
             }
             if(takeLeft) {
@@ -233,7 +235,47 @@ public class searchAndSortMethods {
     }
 
     public void quickSort(ArrayList<Game> arrayList, String attribute) {
+        if (arrayList == null || arrayList.size() <= 1) return;
 
+        int n = arrayList.size();
+        java.util.Stack<int[]> stack = new java.util.Stack<>();
+
+        stack.push(new int[]{0, n - 1});
+
+        while (!stack.isEmpty()) {
+            int[] range = stack.pop();
+            int low = range[0], high = range[1];
+            if (low >= high) continue;
+            Game pivot = arrayList.get(high);
+            int i = low - 1;
+            for (int j = low; j < high; j++) {
+                boolean condition = false;
+                switch (attribute.toLowerCase()) {
+                    case "quality":
+                        condition = arrayList.get(j).getQuality() <= pivot.getQuality();
+                        break;
+                    case "category":
+                        condition = arrayList.get(j).getCategory().compareTo(pivot.getCategory()) <= 0;
+                        break;
+                    case "price":
+                    default:
+                        condition = arrayList.get(j).getPrice() <= pivot.getPrice();
+                        break;
+                }
+                if (condition) {
+                    i++;
+                    Game temp = arrayList.get(i);
+                    arrayList.set(i, arrayList.get(j));
+                    arrayList.set(j, temp);
+                }
+            }
+            Game temp = arrayList.get(i + 1);
+            arrayList.set(i + 1, arrayList.get(high));
+            arrayList.set(high, temp);
+            int pi = i + 1;
+            stack.push(new int[]{low, pi - 1});
+            stack.push(new int[]{pi + 1, high});
+        }
     }
 
 }

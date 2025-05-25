@@ -10,17 +10,17 @@ public class Main {
 
         ArrayList<Game> data = dataset.getData();
 
-        dataset.sortByAlgorithm("mergesort", "price");
+        dataset.sortByAlgorithm("bubblesort", "quality");
 
-        for(int i = 0; i < data.size(); i++) {
-            System.out.println(data.get(i).getPrice());
-        }
-
-        ArrayList<Game> data2 = dataset.getGamesByPriceRange(4000, 10000);
-
-//        for(int i = 0; i < data2.size(); i++) {
-//            System.out.println(data2.get(i).getPrice());
+//        for(int i = 0; i < data.size(); i++) {
+//            System.out.println(data.get(i).getQuality());
 //        }
+
+        ArrayList<Game> data2 = dataset.getGamesByPrice(10000);
+
+        for(int i = 0; i < data2.size(); i++) {
+            System.out.println(data2.get(i).getPrice());
+        }
 
     }
 
