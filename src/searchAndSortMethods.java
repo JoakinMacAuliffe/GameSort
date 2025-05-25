@@ -89,21 +89,7 @@ public class searchAndSortMethods {
         }
     }
 
-    public int binarySearchByQuality(ArrayList<Game> arrayList, int quality) {
-        int left = 0;
-        int right = arrayList.size() - 1;
-        while(left <= right) {
-            int mid = (left + right) / 2;
-            if(arrayList.get(mid).getQuality() == quality) {
-                return mid;
-            } else if(arrayList.get(mid).getQuality() > quality) {
-                right = mid - 1;
-            } else if(arrayList.get(mid).getQuality() < quality) {
-                left = mid + 1;
-            }
-        }
-        return -1;
-    }
+   
 
     public void bubbleSort(ArrayList<Game> arrayList, String attribute){
 
