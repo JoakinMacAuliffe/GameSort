@@ -12,9 +12,12 @@ public class Dataset{
 	}
 	    
 	public ArrayList<Game> getGamesByPrice(int price){
+
 	    ArrayList<Game> dataSortedByPrice = new ArrayList<>();
-	    if(sortedByAttribute.equalsIgnoreCase("price")) { // El atributo equivale a price ignorando mayúsculas
-			int index = searchAndSortMethods.binarySearchByPrice(data, price); // El índice se posiciona sobre el primer juego que coincida con el precio
+
+		if(sortedByAttribute.equalsIgnoreCase("price")) { // El atributo equivale a price ignorando mayúsculas
+
+			int index = searchAndSortMethods.binarySearch(data, "price", 0, price, "null"); // El índice se posiciona sobre el primer juego que coincida con el precio
 			if(index == -1) return dataSortedByPrice; // No existe ningún juego con ese precio, retorna lista vacía
 
 			dataSortedByPrice.add(data.get(index));
@@ -46,7 +49,7 @@ public class Dataset{
 		ArrayList<Game> dataSortedByPriceRange = new ArrayList<>();
 		if(sortedByAttribute.equalsIgnoreCase("price")) {
 
-			int index = searchAndSortMethods.binarySearchByPriceRange(data, lowerPrice, higherPrice);
+			int index = searchAndSortMethods.binarySearch(data, "pricebyrange", lowerPrice, higherPrice, "null");
 			if(index == -1) return dataSortedByPriceRange;
 
 			dataSortedByPriceRange.add(data.get(index));
@@ -84,7 +87,7 @@ public class Dataset{
 
 		if(sortedByAttribute.equalsIgnoreCase("category")) {
 
-			int index = searchAndSortMethods.binarySearchByCategory(data, category);
+			int index = searchAndSortMethods.binarySearch(data, "category",0, 0, category);
 
 			if(index == -1) return dataSortedByCategory;
 
@@ -92,7 +95,7 @@ public class Dataset{
 
 			int left = index - 1;
 
-			while(left >= 0 && data.get(left).getCategory() == category) {
+			while(left >= 0 && data.get(left).getCategory().compareTo(category) == 0) {
 
 				dataSortedByCategory.add(data.get(left));
 				left--;
@@ -100,7 +103,7 @@ public class Dataset{
 
 			int right = index + 1;
 
-			while(right < data.size() && data.get(right).getCategory() == category) {
+			while(right < data.size() && data.get(right).getCategory().compareTo(category) == 0) {
 
 				dataSortedByCategory.add(data.get(right));
 				right++;
@@ -110,7 +113,7 @@ public class Dataset{
 
 			for(int i = 0; i < data.size(); i++) {
 
-				if(data.get(i).getCategory() == category) dataSortedByCategory.add(data.get(i));
+				if(data.get(i).getCategory().compareTo(category) == 0) dataSortedByCategory.add(data.get(i));
 			}
 		}
 

@@ -2,57 +2,71 @@ import java.util.ArrayList;
 
 public class searchAndSortMethods {
 
-    public int binarySearchByPrice(ArrayList<Game> arrayList, int price) {
-        int left = 0;
-        int right = arrayList.size() - 1;
-        while(left <= right) {
-            int mid = (left + right) / 2;
-            if(arrayList.get(mid).getPrice() == price) {
-                return mid;
-            } else if(arrayList.get(mid).getPrice() > price) {
-                right = mid - 1;
-            } else if(arrayList.get(mid).getPrice() < price) {
-                left = mid + 1;
-            }
+    public int binarySearch(ArrayList<Game> arrayList, String mode, int price1, int price2, String category){
+
+        switch(mode){
+
+            case "price":
+
+                int left = 0;
+                int right = arrayList.size() - 1;
+
+                while(left <= right) {
+
+                    int mid = (left + right) / 2;
+
+                    if(arrayList.get(mid).getPrice() == price2) return mid;
+
+                    else if(arrayList.get(mid).getPrice() > price2) right = mid - 1;
+
+                    else left = mid + 1;
+                }
+
+                return -1;
+                break;
+
+            case "pricebyrange":
+
+                int left = 0;
+                int right = arrayList.size() - 1;
+
+                while(left <= right) {
+
+                    int mid = (left + right) / 2;
+
+                    if(arrayList.get(mid).getPrice() >= price1 && arrayList.get(mid).getPrice() <= price2) return mid;
+
+                    else if(arrayList.get(mid).getPrice() > price2) right = mid - 1;
+
+                    else left = mid + 1;
+
+                }
+
+                return -1;
+                break;
+
+            case "category":
+
+                int left = 0;
+                int right = arrayList.size() - 1;
+
+                while (left <= right) {
+
+                    int mid = (left + right) / 2;
+
+                    if (arrayList.get(mid).getCategory().compareTo(category) == 0) return mid;
+
+                    else if (arrayList.get(mid).getCategory().compareTo(category) > 0) right = mid - 1;
+
+                    else left = mid + 1;
+                }
+
+                return -1;
+                break;
+
+            default: return -1;
         }
-        return -1;
     }
-
-    public int binarySearchByPriceRange(ArrayList<Game> arrayList, int lowerPrice, int higherPrice) {
-
-        int left = 0;
-        int right = arrayList.size() - 1;
-        while(left <= right) {
-            int mid = (left + right) / 2;
-            if(arrayList.get(mid).getPrice() >= lowerPrice && arrayList.get(mid).getPrice() <= higherPrice) {
-                return mid;
-            } else if(arrayList.get(mid).getPrice() > higherPrice) {
-                right = mid - 1;
-            } else if(arrayList.get(mid).getPrice() < lowerPrice){
-                left = mid + 1;
-            }
-        }
-        return -1;
-    }
-
-   public int binarySearchByCategory(ArrayList<Game> arrayList, String category) {
-
-       int left = 0;
-       int right = arrayList.size() - 1;
-
-       while (left <= right) {
-
-           int mid = (left + right) / 2;
-
-           if (arrayList.get(mid).getCategory() == category) return mid;
-
-           else if (arrayList.get(mid).getCategory().compareTo(category) < 0) right = mid - 1;
-
-           else left = mid + 1;
-       }
-
-       return -1;
-   }
 
     public void bubbleSort(ArrayList<Game> arrayList, String attribute){
 
