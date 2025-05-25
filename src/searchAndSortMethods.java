@@ -278,4 +278,43 @@ public class searchAndSortMethods {
         }
     }
 
+    public void countingSort(ArrayList<Game> arrayList, String attribute) {
+        if(!attribute.equalsIgnoreCase("quality") || arrayList == null || arrayList.size() <= 1) {
+            return;
+        }
+
+        int n = arrayList.size();
+        int maxQuality = 0;
+        int minQuality = Integer.MAX_VALUE;
+
+        for (int i = 0; i < arrayList.size(); i++) {
+            int q = arrayList.get(i).getQuality();
+            if (q > maxQuality) maxQuality = q;
+            if (q < minQuality) minQuality = q;
+        }
+
+        int range = maxQuality - minQuality + 1;
+        int[] count = new int[range];
+
+        for (int i = 0; i < arrayList.size(); i++) {
+            count[arrayList.get(i).getQuality() - minQuality]++;
+        }
+
+        for (int i = 1; i < range; i++) {
+            count[i] += count[i - 1];
+        }
+
+        Game[] output = new Game[n];
+        for (int i = n - 1; i >= 0; i--) {
+            int q = arrayList.get(i).getQuality();
+            output[count[q - minQuality] - 1] = arrayList.get(i);
+            count[q - minQuality]--;
+        }
+
+        for (int i = 0; i < n; i++) {
+            arrayList.set(i, output[i]);
+        }
+
+    }
+
 }

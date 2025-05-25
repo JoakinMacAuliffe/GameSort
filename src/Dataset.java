@@ -181,7 +181,9 @@ public class Dataset {
 				searchAndSortMethods.quickSort(data, attribute);
 				break;
 
-
+			case "countingsort":
+				searchAndSortMethods.countingSort(data, attribute);
+				break;
 
 			default:
 				switch(attribute.toLowerCase()) {
