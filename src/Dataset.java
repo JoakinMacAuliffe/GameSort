@@ -5,7 +5,7 @@ public class Dataset {
 	private ArrayList<Game> data;
 	private String sortedByAttribute = "";
 
-	searchAndSortMethods searchAndSortMethods = new searchAndSortMethods();
+	SearchAndSortMethods searchAndSortMethods = new SearchAndSortMethods();
 
 	Dataset(ArrayList<Game> data) {
 		this.data = data;
