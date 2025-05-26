@@ -272,7 +272,7 @@ public class SearchAndSortMethods {
 
         int n = arrayList.size();
         int maxQuality = 0;
-        int minQuality = Integer.MAX_VALUE;
+        int minQuality = 100;
 
         for (int i = 0; i < arrayList.size(); i++) {
             int q = arrayList.get(i).getQuality();
