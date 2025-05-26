@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class SearchAndSortMethods {
 
@@ -225,7 +225,7 @@ public class SearchAndSortMethods {
         if (arrayList == null || arrayList.size() <= 1) return;
 
         int n = arrayList.size();
-        java.util.Stack<int[]> stack = new java.util.Stack<>();
+        Stack<int[]> stack = new Stack<>();
 
         stack.push(new int[]{0, n - 1});
 
