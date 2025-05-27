@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class GenerateData {
 
-    private String[] words = {"Dragon", "Empire", "Quest", "Galaxy","Fant", "Legends", "Warrior",
+    private String[] words = {"Dragon", "Empire", "Quest", "Galaxy", "Fant", "Legends", "Warrior",
     "Pergio","Tourbes", "Do", "While", "Ohliver", "Sinto", "Super", "Ovalous"};
     private String[] categories = {"Accion", "Aventura", "Estrategia", "RPG", "Deportes", "Simulacion"};
     private Random random = new Random();
@@ -50,6 +50,38 @@ public class GenerateData {
             }
         }
         return games;
+    }
+
+    public static void main(String[] args) {
+
+        GenerateData generateData = new GenerateData();
+
+        ArrayList<Game> games = generateData.generateData(20);
+
+        for(int i = 0; i < games.size(); i++) {
+            System.out.println(games.get(i).getName() + " - $" + games.get(i).getPrice() + " - " + games.get(i).getCategory()
+             + " - " + games.get(i).getQuality() + "/100");
+        }
+
+        String filename = "test_games.csv";
+        try {
+            generateData.saveGamesToCSV(games, filename);
+            System.out.println("\nJuegos guardados en " + filename);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            ArrayList<Game> loadedGames = generateData.readGamesFromCSV(filename);
+            System.out.println("\nJuegos cargados desde el archivo .csv:");
+            for (int i = 0; i < loadedGames.size(); i++) {
+                System.out.println(loadedGames.get(i).getName() + " - $" + loadedGames.get(i).getPrice() + " - " + loadedGames.get(i).getCategory()
+                        + " - " + loadedGames.get(i).getQuality() + "/100");
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
     }
 
 }
