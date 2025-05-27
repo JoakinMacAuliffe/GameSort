@@ -341,6 +341,13 @@ public class Dataset {
 			System.out.println(byPrice.get(i).getName() + " - " + byPrice.get(i).getPrice());
 		}
 
+		// Prueba getGamesByPriceRange
+		ArrayList<Game> byPriceRange = dataset.getGamesByPriceRange(5000, 10000);
+		System.out.println("Objetos cuyo atributo price está entre 5000 y 10000: ");
+		for (int i = 0; i < byPriceRange.size(); i++) {
+			System.out.println(byPriceRange.get(i).getName() + " - " + byPriceRange.get(i).getPrice());
+		}
+
 		// Prueba getGamesByCategory
 		ArrayList<Game> byCategory = dataset.getGamesByCategory("RPG");
 		System.out.println("Objetos cuyo atributo category es RPG: ");
