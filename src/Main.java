@@ -31,14 +31,21 @@ public class Main {
         // Para probar los algoritmos de búsqueda binaria se requiere tener el arreglo previamente ordenado, por lo que se mide el tiempo de
         // ejecución del algoritmo de ordenamiento y posterioremente se le resta al tiempo de ejecución del algoritmo de búsqueda a analizar, de
         // manera que se mida el tiempo que demora el algoritmo de búsqueda binaria sin tomar en cuenta el previo ordenamiento.
-        System.out.println("Sorting time: " + sortingTime + " ms, sorted by: " + dataset3.getSortedByAttribute());
+        System.out.println("Tiempo de ordenamiento: " + sortingTime + " ms, ordenado por: " + dataset3.getSortedByAttribute());
 
         ArrayList<Game> temp = dataset3.getGamesByPrice(10000);
 
         long endTime = System.currentTimeMillis();
 
         // Como se mencionó previamente, el tiempo de ejecución es el tiempo que tarda en ejecutarse el algoritmo de búsqueda menos el tiempo de ordenamiento
-        System.out.println("Execution time: " + (endTime - startTime - sortingTime) + " ms");
+        System.out.println("Tiempo de ejecución: " + (endTime - startTime - sortingTime) + " ms");
+
+        // Medición del tiempo de ejecución de countingSort
+        sortingStartTime = System.currentTimeMillis();
+        dataset3.sortByAlgorithm("countingSort", "quality");
+        sortingEndTime = System.currentTimeMillis();
+
+        System.out.println("Tiempo de ordenamiento: " + (sortingEndTime - sortingStartTime) + " ms");
 
     }
 
