@@ -24,12 +24,12 @@ public class GenerateData {
     public void saveGamesToCSV(ArrayList<Game> games, String filename) throws IOException {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             writer.println("name,category,price,quality");
-            for (Game game : games) {
+            for (int i = 0; i < games.size(); i++) {
                 writer.printf("\"%s\",\"%s\",%d,%d%n",
-                        game.getName().replace("\"", "\"\""),
-                        game.getCategory().replace("\"", "\"\""),
-                        game.getPrice(),
-                        game.getQuality());
+                        games.get(i).getName().replace("\"", "\"\""),
+                        games.get(i).getCategory().replace("\"", "\"\""),
+                        games.get(i).getPrice(),
+                        games.get(i).getQuality());
             }
         }
     }
