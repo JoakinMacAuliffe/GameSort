@@ -216,9 +216,152 @@ public class Dataset {
 		}
 	}
 
+	public static void main(String[] args) {
+
+		ArrayList<Game> games = new ArrayList<>();
+		games.add(new Game("GameA", "RPG", 5000, 80));
+		games.add(new Game("GameB", "Accion", 3000, 90));
+		games.add(new Game("GameC", "RPG", 5000, 70));
+		games.add(new Game("GameD", "Aventura", 7000, 80));
+
+		Dataset dataset = new Dataset(games);
+
+		// Pruebas bubbleSort
+
+		dataset.sortByAlgorithm("bubbleSort", "price");
+		System.out.println("Ordenado por precio usando bubbleSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getPrice());
+		}
+
+		dataset.sortByAlgorithm("bubbleSort", "quality");
+		System.out.println("Ordenado por quality usando bubbleSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getQuality());
+		}
+
+		dataset.sortByAlgorithm("bubbleSort", "category");
+		System.out.println("Ordenado por category usando bubbleSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getCategory());
+		}
+
+		// Pruebas insertionSort
+
+		dataset.sortByAlgorithm("insertionSort", "price");
+		System.out.println("Ordenado por precio usando insertionSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getPrice());
+		}
+
+		dataset.sortByAlgorithm("insertionSort", "quality");
+		System.out.println("Ordenado por quality usando insertionSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getQuality());
+		}
+
+		dataset.sortByAlgorithm("insertionSort", "category");
+		System.out.println("Ordenado por category usando insertionSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getCategory());
+		}
+
+		// Pruebas selectionSort
+
+		dataset.sortByAlgorithm("selectionSort", "price");
+		System.out.println("Ordenado por precio usando selectionSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getPrice());
+		}
+
+		dataset.sortByAlgorithm("selectionSort", "quality");
+		System.out.println("Ordenado por quality usando selectionSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getQuality());
+		}
+
+		dataset.sortByAlgorithm("selectionSort", "category");
+		System.out.println("Ordenado por category usando selectionSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getCategory());
+		}
+
+		// Pruebas mergeSort
+
+		dataset.sortByAlgorithm("mergeSort", "price");
+		System.out.println("Ordenado por precio usando mergeSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getPrice());
+		}
+
+		dataset.sortByAlgorithm("mergeSort", "quality");
+		System.out.println("Ordenado por quality usando mergeSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getQuality());
+		}
+
+		dataset.sortByAlgorithm("mergeSort", "category");
+		System.out.println("Ordenado por category usando mergeSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getCategory());
+		}
+
+		// Pruebas quickSort
+
+		dataset.sortByAlgorithm("quickSort", "price");
+		System.out.println("Ordenado por precio usando quickSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getPrice());
+		}
+
+		dataset.sortByAlgorithm("quickSort", "quality");
+		System.out.println("Ordenado por quality usando quickSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getQuality());
+		}
+
+		dataset.sortByAlgorithm("quickSort", "category");
+		System.out.println("Ordenado por category usando quickSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getCategory());
+		}
+
+		// Pruebas countingSort
+
+		dataset.sortByAlgorithm("countingSort", "quality");
+		System.out.println("Ordenado por quality usando countingSort: ");
+		for (int i = 0; i < dataset.getData().size(); i++) {
+			System.out.println(dataset.getData().get(i).getName() + " - " + dataset.getData().get(i).getQuality());
+		}
+
+		// Prueba getGamesByPrice
+		ArrayList<Game> byPrice = dataset.getGamesByPrice(5000);
+		System.out.println("Objetos cuyo atributo price es 5000: ");
+		for (int i = 0; i < byPrice.size(); i++) {
+			System.out.println(byPrice.get(i).getName() + " - " + byPrice.get(i).getPrice());
+		}
+
+		// Prueba getGamesByCategory
+		ArrayList<Game> byCategory = dataset.getGamesByCategory("RPG");
+		System.out.println("Objetos cuyo atributo category es RPG: ");
+		for (int i = 0; i < byCategory.size(); i++) {
+			System.out.println(byCategory.get(i).getName() + " - " + byCategory.get(i).getCategory());
+		}
+
+		// Prueba getGamesByQuality
+		ArrayList<Game> byQuality = dataset.getGamesByQuality(80);
+		System.out.println("Objetos cuyo atributo quality es 80: ");
+		for (int i = 0; i < byQuality.size(); i++) {
+			System.out.println(byQuality.get(i).getName() + " - " + byQuality.get(i).getQuality());
+		}
+	}
+
 	public ArrayList<Game> getData() {
 		return data;
 	}
 
+	public String getSortedByAttribute() {
+		return sortedByAttribute;
+	}
 }
 
